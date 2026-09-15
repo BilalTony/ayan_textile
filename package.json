@@ -1,0 +1,17 @@
+{
+  "name": "ayan-textile",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node tools/dev-server.js",
+    "hash": "node tools/hash-password.js",
+    "test": "node tools/test-api.js"
+  },
+  "dependencies": {
+    "mongodb": "^6.13.0",
+    "nodemailer": "^6.10.0"
+  }
+}

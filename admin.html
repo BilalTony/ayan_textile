@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin — Ayan Textile</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/images/brand/favicon-32.png" sizes="32x32">
+<link rel="stylesheet" href="/css/admin.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap">
+</head>
+<body>
+
+<div class="shell">
+  <nav class="side" id="side" aria-label="Sections">
+    <img src="/images/brand/ayan-logo.png" alt="Ayan Textile">
+    <!-- section buttons are rendered by js/admin.js -->
+    <div class="spacer"></div>
+    <button type="button" id="view-site">View the site ↗</button>
+    <button type="button" id="signout">Sign out</button>
+  </nav>
+
+  <main class="main">
+    <div class="bar">
+      <div>
+        <p class="eyebrow" id="crumb">Admin</p>
+        <h1 id="heading" style="font-size:24px">Loading…</h1>
+      </div>
+      <button class="btn" type="button" id="add" hidden>Add new</button>
+    </div>
+
+    <p class="msg" id="msg" role="status" aria-live="polite"></p>
+    <div id="view"></div>
+  </main>
+</div>
+
+<dialog id="picker">
+  <div class="bar">
+    <h2 style="font-size:18px">Pictures</h2>
+    <div style="display:flex;gap:8px">
+      <label class="btn btn--ghost btn--sm" for="upload" style="margin:0">Upload<input id="upload" type="file" accept="image/*" hidden></label>
+      <button class="btn btn--ghost btn--sm" type="button" id="picker-close">Close</button>
+    </div>
+  </div>
+  <p class="muted" id="picker-msg">Pictures are stored in the database — no bucket needed. Big ones are shrunk in your browser before upload.</p>
+  <div class="gallery" id="gallery"></div>
+</dialog>
+
+<script src="/js/admin.js" defer></script>
+</body>
+</html>

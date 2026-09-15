@@ -1,46 +1,43 @@
 /**
- * POST /api/enquiry — Vercel serverless function.
+ * POST /api/enquiry — the contact form.
  *
- * Emails the enquiry to ENQUIRY_TO via Resend. Deliberately dependency-free
- * (plain fetch), so the project needs no npm install and no build step.
+ * Stores the enquiry in Mongo (so it shows up in the admin) and emails it
+ * over plain SMTP. If the email fails but the database write succeeded the
+ * visitor still gets a "thank you" — the enquiry is not lost.
  *
- * Required environment variables (Vercel → Settings → Environment Variables):
- *   RESEND_API_KEY   re_xxx from https://resend.com/api-keys
- *   ENQUIRY_TO       where enquiries land, e.g. info@ayantextile.com
- *   ENQUIRY_FROM     a verified sender, e.g. "Ayan Textile <site@ayantextile.com>"
- *                    (falls back to Resend's shared onboarding@resend.dev sender)
+ * Environment variables:
+ *   SMTP_HOST, SMTP_PORT (587), SMTP_USER, SMTP_PASS, SMTP_SECURE ("true" for 465)
+ *   ENQUIRY_TO    where enquiries land, comma-separated for several
+ *   ENQUIRY_FROM  the sender, defaults to SMTP_USER
  */
+import nodemailer from 'nodemailer';
+import { col, clean, clientIp, burst, methodNotAllowed } from './_lib.js';
 
-const MAX_LEN = 4000;
 const MIN_FILL_MS = 3000; // a human takes longer than this to fill the form
-
-// Best-effort throttle. Serverless instances are short-lived, so this trims
-// bursts from a single warm instance rather than acting as a real rate limiter.
-const recent = new Map();
-const WINDOW_MS = 60_000;
-const MAX_PER_WINDOW = 5;
-
-function tooMany(ip) {
-  const now = Date.now();
-  const hits = (recent.get(ip) || []).filter((t) => now - t < WINDOW_MS);
-  hits.push(now);
-  recent.set(ip, hits);
-  if (recent.size > 500) recent.clear(); // bound memory
-  return hits.length > MAX_PER_WINDOW;
-}
-
-const clean = (v) => String(v ?? '').trim().slice(0, MAX_LEN);
 
 const escapeHtml = (s) =>
   clean(s).replace(/[&<>"']/g, (c) => (
     { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
   ));
 
-module.exports = async (req, res) => {
-  if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
-    return res.status(405).json({ error: 'Method not allowed.' });
-  }
+function transport() {
+  const host = process.env.SMTP_HOST;
+  if (!host) return null;
+  return (globalThis.__ayanSmtp ||= nodemailer.createTransport({
+    host,
+    port: Number(process.env.SMTP_PORT) || 587,
+    secure: process.env.SMTP_SECURE === 'true' || Number(process.env.SMTP_PORT) === 465,
+    auth: process.env.SMTP_USER
+      ? { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS }
+      : undefined,
+    pool: true
+  }));
+}
+
+export default async function handler(req, res) {
+  res.setHeader('Cache-Control', 'no-store');
+
+  if (req.method !== 'POST') return methodNotAllowed(res, 'POST');
 
   let data = req.body;
   if (typeof data === 'string') {
@@ -50,8 +47,8 @@ module.exports = async (req, res) => {
     return res.status(400).json({ error: 'Invalid request.' });
   }
 
-  // --- spam gates -----------------------------------------------------------
-  // Honeypot and speed traps answer 200 so bots get no signal to adapt.
+  /* --- spam gates ---------------------------------------------------------
+     The honeypot and speed traps answer 200 so bots get no signal to adapt. */
   if (clean(data.website)) return res.status(200).json({ ok: true });
 
   const startedAt = Number(data.startedAt);
@@ -59,19 +56,19 @@ module.exports = async (req, res) => {
     return res.status(200).json({ ok: true });
   }
 
-  const ip =
-    (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
-  if (tooMany(ip)) {
+  const ip = clientIp(req);
+  if (burst('enquiry', ip, 5, 60_000)) {
     return res.status(429).json({ error: 'Too many enquiries. Please try again shortly.' });
   }
 
-  // --- validation -----------------------------------------------------------
-  const name = clean(data.name);
-  const email = clean(data.email);
+  /* --- validation --------------------------------------------------------- */
+  const name = clean(data.name, 200);
+  const email = clean(data.email, 200);
   const message = clean(data.message);
-  const company = clean(data.company);
-  const phone = clean(data.phone);
-  const interest = clean(data.interest);
+  const company = clean(data.company, 200);
+  const phone = clean(data.phone, 60);
+  const interest = clean(data.interest, 120);
+  const product = clean(data.product, 200);
 
   if (!name || !email || !message) {
     return res.status(400).json({ error: 'Name, email and message are required.' });
@@ -80,14 +77,27 @@ module.exports = async (req, res) => {
     return res.status(400).json({ error: 'That email address does not look right.' });
   }
 
-  // --- send -----------------------------------------------------------------
-  const key = process.env.RESEND_API_KEY;
-  const to = process.env.ENQUIRY_TO;
-  const from = process.env.ENQUIRY_FROM || 'Ayan Textile <onboarding@resend.dev>';
+  /* --- keep it ------------------------------------------------------------ */
+  let stored = false;
+  try {
+    await (await col('enquiries')).insertOne({
+      name, email, message, company, phone, interest, product,
+      ip, createdAt: new Date()
+    });
+    stored = true;
+  } catch (err) {
+    console.error('enquiry: could not store:', err);
+  }
 
-  if (!key || !to) {
-    console.error('Enquiry received but email is not configured:', { name, email, interest });
-    return res.status(500).json({ error: 'The contact form is not configured yet.' });
+  /* --- send it ------------------------------------------------------------ */
+  const mailer = transport();
+  const to = process.env.ENQUIRY_TO;
+
+  if (!mailer || !to) {
+    console.error('Enquiry received but SMTP is not configured:', { name, email });
+    return stored
+      ? res.status(200).json({ ok: true })
+      : res.status(500).json({ error: 'The contact form is not configured yet.' });
   }
 
   const rows = [
@@ -95,16 +105,11 @@ module.exports = async (req, res) => {
     ['Company', company || '—'],
     ['Email', email],
     ['Phone', phone || '—'],
-    ['Interested in', interest || '—']
+    ['Interested in', interest || '—'],
+    ['Product', product || '—']
   ]
-    .map(
-      ([k, v]) =>
-        `<tr><td style="padding:6px 16px 6px 0;color:#7f8c8d;font:600 11px/1.4 system-ui;letter-spacing:.12em;text-transform:uppercase;vertical-align:top">${escapeHtml(
-          k
-        )}</td><td style="padding:6px 0;color:#0f1110;font:400 15px/1.5 system-ui">${escapeHtml(
-          v
-        )}</td></tr>`
-    )
+    .map(([k, v]) =>
+      `<tr><td style="padding:6px 16px 6px 0;color:#7f8c8d;font:600 11px/1.4 system-ui;letter-spacing:.12em;text-transform:uppercase;vertical-align:top">${escapeHtml(k)}</td><td style="padding:6px 0;color:#0f1110;font:400 15px/1.5 system-ui">${escapeHtml(v)}</td></tr>`)
     .join('');
 
   const html = `<div style="max-width:620px;margin:0 auto;padding:28px;font-family:system-ui,sans-serif">
@@ -117,43 +122,31 @@ module.exports = async (req, res) => {
     </div>`;
 
   const text = [
-    `New website enquiry`,
-    ``,
+    'New website enquiry', '',
     `Name:     ${name}`,
     `Company:  ${company || '-'}`,
     `Email:    ${email}`,
     `Phone:    ${phone || '-'}`,
     `Interest: ${interest || '-'}`,
-    ``,
-    message
+    `Product:  ${product || '-'}`,
+    '', message
   ].join('\n');
 
   try {
-    const r = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${key}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        from,
-        to: to.split(',').map((s) => s.trim()).filter(Boolean),
-        reply_to: email,
-        subject: `Enquiry — ${name}${company ? ` (${company})` : ''}`,
-        html,
-        text
-      })
+    await mailer.sendMail({
+      from: process.env.ENQUIRY_FROM || process.env.SMTP_USER,
+      to: to.split(',').map((s) => s.trim()).filter(Boolean),
+      replyTo: `${name} <${email}>`,
+      subject: `Enquiry — ${name}${company ? ` (${company})` : ''}`,
+      html,
+      text
     });
-
-    if (!r.ok) {
-      const detail = await r.text();
-      console.error('Resend rejected the enquiry:', r.status, detail);
-      return res.status(502).json({ error: 'Could not send your enquiry right now.' });
-    }
-
     return res.status(200).json({ ok: true });
   } catch (err) {
     console.error('Enquiry send failed:', err);
-    return res.status(502).json({ error: 'Could not send your enquiry right now.' });
+    // Already in the database — the admin will see it, so do not alarm the visitor.
+    return stored
+      ? res.status(200).json({ ok: true })
+      : res.status(502).json({ error: 'Could not send your enquiry right now.' });
   }
-};
+}
