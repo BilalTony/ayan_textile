@@ -1,6 +1,8 @@
 .vercel
 .DS_Store
 node_modules
+.env*.local
+.env
 *.log
 
 # Your untouched original photos — kept locally, not needed on the server

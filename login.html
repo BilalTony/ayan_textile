@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in — Ayan Textile</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/images/brand/favicon-32.png" sizes="32x32">
+<link rel="stylesheet" href="/css/admin.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap">
+</head>
+<body>
+
+<main class="login">
+  <form class="login__card" id="login-form" novalidate>
+    <img src="/images/brand/ayan-logo.png" alt="Ayan Textile">
+    <p class="eyebrow">Admin</p>
+    <h1 style="margin:0 0 22px;font-size:22px">Sign in</h1>
+
+    <div class="stack">
+      <div>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="username" required>
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+      </div>
+      <button class="btn" type="submit" id="submit" style="justify-content:center">Sign in</button>
+    </div>
+
+    <p class="msg" id="msg" role="status" aria-live="polite"></p>
+    <p class="muted" style="margin:18px 0 0"><a href="/">← Back to the site</a></p>
+  </form>
+</main>
+
+<script>
+(function () {
+  var form = document.getElementById('login-form');
+  var msg = document.getElementById('msg');
+  var submit = document.getElementById('submit');
+
+  var say = function (text, state) {
+    msg.textContent = text;
+    msg.setAttribute('data-state', state || '');
+  };
+
+  // Already signed in? Go straight through.
+  fetch('/api/auth').then(function (r) { return r.json(); }).then(function (d) {
+    if (d.authed) location.replace('/admin');
+  }).catch(function () {});
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var body = {
+      email: document.getElementById('email').value.trim(),
+      password: document.getElementById('password').value
+    };
+    if (!body.email || !body.password) return say('Enter your email and password.', 'error');
+
+    submit.disabled = true;
+    say('Checking…', 'busy');
+
+    fetch('/api/auth', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+      .then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (d) {
+          if (!r.ok) throw new Error(d.error || 'Could not sign in.');
+        });
+      })
+      .then(function () { location.replace('/admin'); })
+      .catch(function (err) { say(err.message, 'error'); })
+      .finally(function () { submit.disabled = false; });
+  });
+})();
+</script>
+</body>
+</html>
