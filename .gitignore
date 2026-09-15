@@ -1,0 +1,11 @@
+.vercel
+.DS_Store
+node_modules
+*.log
+
+# Your untouched original photos — kept locally, not needed on the server
+images/_originals/
+
+# Your raw photo drops — originals are copied into images/_originals/
+plain fabric/
+jacquard/

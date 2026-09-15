@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-surface" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><title>Atelier Weave</title><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&amp;family=Space+Grotesk:wght@500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface": "#fbf9f5", "secondary-container": "#ff8665", "primary": "#020408", "inverse-on-surface": "#f2f0ed", "surface-bright": "#fbf9f5", "on-primary-fixed-variant": "#43474e", "secondary": "#a13f23", "background": "#fbf9f5", "on-secondary-container": "#741f05", "tertiary-container": "#032319", "primary-fixed-dim": "#c3c6cf", "on-surface": "#1b1c1a", "primary-container": "#1a1e24", "on-tertiary-fixed": "#012016", "on-error-container": "#93000a", "on-primary-fixed": "#181c22", "on-tertiary-fixed-variant": "#2f4d41", "outline-variant": "#c6c6cb", "on-error": "#ffffff", "surface-variant": "#e4e2de", "secondary-fixed": "#ffdbd1", "on-primary": "#ffffff", "surface-container-low": "#f5f3ef", "primary-fixed": "#dfe2eb", "on-secondary-fixed": "#3b0900", "surface-container-lowest": "#ffffff", "error-container": "#ffdad6", "on-tertiary": "#ffffff", "on-primary-container": "#82868d", "inverse-primary": "#c3c6cf", "on-secondary-fixed-variant": "#81280e", "inverse-surface": "#30312e", "tertiary-fixed": "#c8eada", "on-background": "#1b1c1a", "surface-tint": "#5b5e66", "surface-container": "#efeeea", "surface-dim": "#dbdad6", "secondary-fixed-dim": "#ffb5a0", "on-tertiary-container": "#6d8d7e", "error": "#ba1a1a", "outline": "#75777b", "on-surface-variant": "#45474b", "surface-container-highest": "#e4e2de", "surface-container-high": "#eae8e4", "on-secondary": "#ffffff", "tertiary": "#000603", "tertiary-fixed-dim": "#adcebe" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter": "2rem", "space-sm": "0.5rem", "space-lg": "1.75rem", "space-2xl": "5rem", "margin": "4rem", "space-xs": "0.25rem", "space-md": "1rem", "gutter-mobile": "1rem", "margin-mobile": "1.25rem", "space-xl": "3rem" }, "fontFamily": { "label-md": ["Space Grotesk"], "headline-md": ["Playfair Display"], "label-sm": ["Space Grotesk"], "display-lg": ["Playfair Display"], "body-md": ["Inter"], "body-lg": ["Inter"], "body-sm": ["Inter"], "display-xl-mobile": ["Playfair Display"], "headline-lg": ["Playfair Display"], "display-xl": ["Playfair Display"], "headline-sm": ["Playfair Display"], "display-lg-mobile": ["Playfair Display"], "title-md": ["Inter"] }, "fontSize": { "label-md": ["0.8125rem", { "lineHeight": "1rem", "letterSpacing": "0.06em", "fontWeight": "500" }], "headline-md": ["2rem", { "lineHeight": "2.5rem", "fontWeight": "500" }], "label-sm": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.08em", "fontWeight": "600" }], "display-lg": ["3.5rem", { "lineHeight": "4rem", "letterSpacing": "-0.015em", "fontWeight": "400" }], "body-md": ["1rem", { "lineHeight": "1.625rem", "fontWeight": "400" }], "body-lg": ["1.125rem", { "lineHeight": "1.875rem", "fontWeight": "400" }], "body-sm": ["0.875rem", { "lineHeight": "1.375rem", "fontWeight": "400" }], "display-xl-mobile": ["2.75rem", { "lineHeight": "3.25rem", "letterSpacing": "-0.01em", "fontWeight": "400" }], "headline-lg": ["2.5rem", { "lineHeight": "3rem", "fontWeight": "500" }], "display-xl": ["4.5rem", { "lineHeight": "5rem", "letterSpacing": "-0.02em", "fontWeight": "400" }], "headline-sm": ["1.5rem", { "lineHeight": "2rem", "fontWeight": "600" }], "display-lg-mobile": ["2.25rem", { "lineHeight": "2.75rem", "letterSpacing": "-0.01em", "fontWeight": "400" }], "title-md": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "-0.005em", "fontWeight": "600" }] } } } };</script><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}#mobile-drawer:target{transform:translateX(0);visibility:visible;}#mobile-drawer{transform:translateX(-100%);visibility:hidden;transition:transform 0.3s cubic-bezier(0.16,1,0.3,1),visibility 0.3s linear;}</style></head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-full selection:bg-secondary-fixed selection:text-on-secondary-fixed"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="h-16 px-gutter-mobile flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm"><a aria-label="Open navigation menu" class="w-11 h-11 flex items-center justify-center text-on-surface hover:text-secondary transition-colors" href="#mobile-drawer"><span class="material-symbols-outlined text-[24px]">menu</span></a><a class="flex items-center gap-space-xs" data-path="home" href="#"><img alt="Atelier Weave Textile Mills Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WXK6Q2RMmZaAPqQ7vVMIuUiJVwg25T-Ny_XUx5m2UMCXGEtYncOLLhpKBjjjjnAsLTAJg1Rt0GLVZq7uP1bYDhEgr3dLzAq1KW8UMYdmsl2XA-ulFMP1z7MTJjVMruBHZlISWNRp9NQ9LwfUag4lUEOvv-B25ZVmTWEgFs5rLZeX69rn9GwxeQ0JRaSlH3mM8KDTBSA4UsVDxVWh4lHAijwyzvBUjuFlCUTHAeLHHcZUkbEB13OtFbAHEa"/><span class="font-label-sm text-label-sm uppercase tracking-wider text-primary hidden sm:inline-block">Atelier Weave</span></a></div><div class="flex items-center gap-space-xs"><span class="font-headline-sm text-headline-sm text-primary sr-only">Home</span><a class="h-11 px-space-md bg-primary-container text-on-primary font-label-sm text-label-sm uppercase flex items-center justify-center hover:bg-secondary transition-colors" data-path="contact-inquiry" href="#">Quote</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><div class="fixed inset-0 z-50 bg-primary/40 backdrop-blur-sm flex" id="mobile-drawer"><div class="w-4/5 max-w-xs bg-surface h-full flex flex-col pt-safe pb-safe shadow-2xl"><div class="h-16 px-gutter-mobile flex items-center justify-between"><div class="flex items-center gap-space-xs"><img alt="Atelier Weave Textile Mills Logo" class="h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1WXK6Q2RMmZaAPqQ7vVMIuUiJVwg25T-Ny_XUx5m2UMCXGEtYncOLLhpKBjjjjnAsLTAJg1Rt0GLVZq7uP1bYDhEgr3dLzAq1KW8UMYdmsl2XA-ulFMP1z7MTJjVMruBHZlISWNRp9NQ9LwfUag4lUEOvv-B25ZVmTWEgFs5rLZeX69rn9GwxeQ0JRaSlH3mM8KDTBSA4UsVDxVWh4lHAijwyzvBUjuFlCUTHAeLHHcZUkbEB13OtFbAHEa"/><span class="font-headline-sm text-title-md text-primary">Atelier Weave</span></div><a aria-label="Close menu" class="w-11 h-11 flex items-center justify-center text-on-surface hover:text-secondary" href="#"><span class="material-symbols-outlined text-[22px]">close</span></a></div><div class="px-gutter-mobile py-space-xs"><span class="font-label-sm text-label-sm uppercase text-outline">Specifier Directory</span></div><nav class="flex-1 overflow-y-auto px-gutter-mobile py-space-sm flex flex-col gap-space-xs"><a class="py-space-sm font-label-md text-label-md uppercase text-on-surface hover:text-secondary transition-colors" data-path="home" href="#">Home</a><a class="py-space-sm font-label-md text-label-md uppercase text-on-surface hover:text-secondary transition-colors" data-path="fabric-collection" href="#">Collections — Fabric</a><a class="py-space-sm font-label-md text-label-md uppercase text-on-surface hover:text-secondary transition-colors" data-path="home-decor-collection" href="#">Collections — Décor</a><a class="py-space-sm font-label-md text-label-md uppercase text-on-surface hover:text-secondary transition-colors" data-path="accessories-collection" href="#">Collections — Accessories</a><a class="py-space-sm font-label-md text-label-md uppercase text-on-surface hover:text-secondary transition-colors" data-path="manufacturing" href="#">Manufacturing</a><a class="py-space-sm font-label-md text-label-md uppercase text-on-surface hover:text-secondary transition-colors" data-path="our-story" href="#">Our Story</a><a class="py-space-sm font-label-md text-label-md uppercase text-on-surface hover:text-secondary transition-colors" data-path="specimen-gallery" href="#">Gallery</a><a class="py-space-sm font-label-md text-label-md uppercase text-on-surface hover:text-secondary transition-colors" data-path="contact-inquiry" href="#">Contact / Inquiry</a></nav><div class="p-gutter-mobile bg-surface-container-low"><div class="font-label-sm text-label-sm uppercase text-outline mb-space-xs">Mill Direct</div><a class="flex items-center gap-space-xs font-body-sm text-body-sm text-on-surface" href="tel:+18005550198"><span class="material-symbols-outlined text-[18px] text-secondary">phone_in_talk</span>+1 (800) 555-0198</a></div></div><a aria-label="Close backdrop" class="flex-1 h-full cursor-default" href="#"></a></div><main class="flex flex-col relative w-full pt-16 pb-20 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- 1. HERO SECTION -->
+<section class="relative w-full px-margin-mobile pt-space-md pb-space-xl flex flex-col gap-space-lg">
+<!-- Manufacturer Accreditation Pill -->
+<div class="inline-flex items-center gap-space-xs self-start bg-surface-container px-space-sm py-1.5 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface">B2B Textile Manufacturer • Est. 1978 • Global Export</span>
+</div>
+<!-- Editorial Lead Headline -->
+<div class="flex flex-col gap-space-sm">
+<h1 class="font-display-xl-mobile text-display-xl-mobile text-primary tracking-tight">
+        We Create Textiles That Bring Ideas to Life.
+      </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+        From everyday commercial yardage to refined architectural drapery and woven objects, we manufacture and supply contract-grade textile solutions for design studios, hoteliers, and specifiers worldwide.
+      </p>
+</div>
+<!-- CTAs -->
+<div class="flex flex-col sm:flex-row gap-space-xs pt-space-xs">
+<a class="h-12 px-space-lg bg-primary text-on-primary font-label-md text-label-md uppercase tracking-wider flex items-center justify-center hover:bg-secondary transition-colors duration-200 shadow-sm" data-path="fabric-collection" href="#">
+        Explore Collections
+      </a>
+<a class="h-12 px-space-lg bg-surface-container text-on-surface font-label-md text-label-md uppercase tracking-wider flex items-center justify-center hover:bg-surface-container-high transition-colors duration-200" data-path="contact-inquiry" href="#">
+        Talk to Our Team
+      </a>
+</div>
+<!-- Hero Double Imagery Spread (Using Reference DataStore Images) -->
+<div class="grid grid-cols-1 gap-space-sm pt-space-xs">
+<!-- Main Loom & Roll Vault Image -->
+<div class="relative w-full aspect-[4/3] bg-surface-container-high overflow-hidden shadow-sm">
+<img alt="Atelier Weave industrial loom mill with rolls of natural linen and terracotta weaves on steel racks" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIUwyCZTiD2YPhR_iWnlZsLNLgrBIGOHVaaZeGTVY1EwcS_fSO16d9BYcAnxoztNvmmHRjcf6oiv3hZzEfD5TIfU1Y-K9087O03-SMnKjjbQYk5Bcnr_EZL82--JeTrAdF-019riw1nzYj2gLOOZyCUvFMJqrnEdJZUh55f0o81ASoDBs0QTygqnkR6mcbtWS969IkENhGpvB-W3bOdud-oi8V-O8ARZfZyMNMfobzo7luk0-DzNAUKg"/>
+<div class="absolute bottom-3 left-3 bg-surface/90 backdrop-blur-md px-2.5 py-1 flex items-center gap-1.5 shadow-sm">
+<span class="material-symbols-outlined text-[14px] text-secondary">factory</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary">Mill Bay 04 • Warp Line Active</span>
+</div>
+</div>
+<!-- Tactile Drape Inset Accent -->
+<div class="relative w-full aspect-[16/9] bg-surface-container-high overflow-hidden shadow-sm flex items-center">
+<img alt="Sensory macro drape of terracotta woven twill and dark charcoal structured wool textiles" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2Y_6fW8r1gE7EFSd1QdtJAtLBwi26Kyq-n8R7ndCkkb1NnPnmkJxuKBL3l3L5nY74RO3ZRkRooaNjYdc6O2hnZ31HxO9PFBqko7lxjcRJoO1H4dgNeBzaK7D29ia_LeIXN3XunsQJGfKGxfrWTGqUk1Nz0rUtoAcMyIGdZY1yQrBscoHSsKvS6mKVxpeWKu-Zv75LgZVDWT_3KO3B9i0IDVpI0s4tptr6ocW-tbasWhRgPkyF2Rhu6A"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/70 via-transparent to-transparent flex items-end p-space-sm">
+<div class="flex items-center justify-between w-full text-on-primary">
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Tactile Grading: 480 GSM Felted Bouclé</span>
+<span class="font-label-sm text-label-sm uppercase text-secondary-fixed">Lot Ref. #8842-TW</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Metric Badges -->
+<div class="grid grid-cols-3 gap-space-xs pt-space-xs">
+<div class="bg-surface-container-low p-space-sm flex flex-col justify-between shadow-sm">
+<span class="font-headline-sm text-headline-sm text-primary">45+</span>
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Export Countries</span>
+</div>
+<div class="bg-surface-container-low p-space-sm flex flex-col justify-between shadow-sm">
+<span class="font-headline-sm text-headline-sm text-primary">1.2M</span>
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">Meters / Mo</span>
+</div>
+<div class="bg-surface-container-low p-space-sm flex flex-col justify-between shadow-sm">
+<div class="flex items-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+</div>
+<span class="font-label-sm text-label-sm uppercase text-on-surface-variant">ISO 9001 • OEKO</span>
+</div>
+</div>
+</section>
+<!-- 2. THREE CORE PRODUCT CATEGORIES -->
+<section class="w-full px-margin-mobile py-space-xl bg-surface-container-low flex flex-col gap-space-lg">
+<div class="flex flex-col gap-space-xs">
+<div class="inline-flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">Disciplines</span>
+<span class="w-6 h-[1px] bg-secondary"></span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary">
+        Architectural Specifier Pillars
+      </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Every roll emerges from our vertically unified facility, tested to surpass ACT commercial standards.
+      </p>
+</div>
+<div class="flex flex-col gap-space-md">
+<!-- Category 1 -->
+<a class="group block bg-surface shadow-sm overflow-hidden transition-all duration-300" data-path="fabric-collection" href="#">
+<div class="aspect-[16/10] w-full overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="High-resolution tactile macro photo of stacked raw natural linen fabric bolts on an industrial stainless table, bathed in soft afternoon window light in a design atelier" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRXsF1XIUMNszXpD3DbAi6QcP3aX3p32A-vmhtUx9-oNmtbyK1nO9B-Pp_GHd4vGRP1yMdTt-8FrtXdxTsxJ75UN80ZrOiSjeY55jDrmfASQWB1xab-ts9Nfkeq5tU8WlBMQGe8UrPrsWq-KZprtbTCed7kJZTmpG-vhqUgcp5HRyySZLjEd_ODi01BkDlM9HzQmS_TVq9kkQcI1tBEQUKiwTgPUDy073V1juIkYZcds-ngpfY3Dpz0A"/>
+<span class="absolute top-3 left-3 bg-primary text-on-primary font-label-sm text-label-sm uppercase px-2 py-1">Cat. No. 01</span>
+</div>
+<div class="p-space-md flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-primary">01 — Fabric</h3>
+<span class="material-symbols-outlined text-secondary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Versatile contract-grade fabrics engineered for high-traffic hospitality, corporate seating, and heavy upholstery.
+          </p>
+<div class="flex flex-wrap gap-space-xs pt-space-xs">
+<span class="font-label-sm text-label-sm uppercase bg-surface-container px-2 py-0.5 text-on-surface">320-650 GSM</span>
+<span class="font-label-sm text-label-sm uppercase bg-surface-container px-2 py-0.5 text-on-surface">100k Martindale</span>
+</div>
+</div>
+</a>
+<!-- Category 2 -->
+<a class="group block bg-surface shadow-sm overflow-hidden transition-all duration-300" data-path="home-decor-collection" href="#">
+<div class="aspect-[16/10] w-full overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Floor-to-ceiling architectural raw sheer linen drapery hanging in a brutalist concrete interior with warm terra-cotta flooring and golden light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgrV9pufUquhrlehGJV2_1rKdOA3JtwoMlB-oayuqHw-ryGhD73K0zLW2f48fSOwmzpP5ncfSZ0TWGdztXUlR9OvNk-sDc4_WmTeV2KHeGBONSWUPeBFjNUe6hbz-2JYYTU9aOW3UX8wXhLs-z0KFzHuShEMN9FEiVmPs1A3ZqQEEjDiK2oemMoAqHe74dhCq6ynpAx-YFULAmpPrXHSNPeOKpL-QKyND-Wl5Lq4yZY6afwETzeWzVeQ"/>
+<span class="absolute top-3 left-3 bg-primary text-on-primary font-label-sm text-label-sm uppercase px-2 py-1">Cat. No. 02</span>
+</div>
+<div class="p-space-md flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-primary">02 — Home Décor</h3>
+<span class="material-symbols-outlined text-secondary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Textiles designed to bring acoustic calm, filtered daylight character, and understated warmth to architectural spaces.
+          </p>
+<div class="flex flex-wrap gap-space-xs pt-space-xs">
+<span class="font-label-sm text-label-sm uppercase bg-surface-container px-2 py-0.5 text-on-surface">NRC 0.75 Acoustic</span>
+<span class="font-label-sm text-label-sm uppercase bg-surface-container px-2 py-0.5 text-on-surface">Wide-Width 320cm</span>
+</div>
+</div>
+</a>
+<!-- Category 3 -->
+<a class="group block bg-surface shadow-sm overflow-hidden transition-all duration-300" data-path="accessories-collection" href="#">
+<div class="aspect-[16/10] w-full overflow-hidden relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Close-up of minimalist woven textured wool throws and structured textile accessories stacked on a raw dark timber bench" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATpU-tl6vEKAZ-pyxfhM8vVDIboNe4oA9s63kLCwGI4LJIP24E6DSTSeW9jtvKcIcrtMcQm2K6lPxgJU2GwOf1FxqVPOVLm6QVzr-3vQApxph3uhjoJ3gnNQnDp_36ZT76J1GAiPnGh6UvNNNnabCuEN2gfeGkilZUTW_Uqz_ANyzN49b3io-bCYYo5NF6m2uTXL5jFSWt0-NU9JMMywsqN5kAMgs43dS4_6CDkZ9rEWzGbYrKAtTiBg"/>
+<span class="absolute top-3 left-3 bg-primary text-on-primary font-label-sm text-label-sm uppercase px-2 py-1">Cat. No. 03</span>
+</div>
+<div class="p-space-md flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-primary">03 — Accessories</h3>
+<span class="material-symbols-outlined text-secondary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Thoughtfully crafted textile objects, finished throws, and contract cushion covers that articulate tactile depth.
+          </p>
+<div class="flex flex-wrap gap-space-xs pt-space-xs">
+<span class="font-label-sm text-label-sm uppercase bg-surface-container px-2 py-0.5 text-on-surface">Finished Goods</span>
+<span class="font-label-sm text-label-sm uppercase bg-surface-container px-2 py-0.5 text-on-surface">Private Label OEM</span>
+</div>
+</div>
+</a>
+</div>
+</section>
+<!-- 3. HORIZONTAL CAROUSEL — FEATURED SPECIMEN COLLECTIONS -->
+<section class="w-full py-space-xl flex flex-col gap-space-md">
+<div class="px-margin-mobile flex items-end justify-between">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">Specifier Vault</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">Curated Weaves</h2>
+</div>
+<!-- Interactive Carousel Arrows -->
+<div class="flex items-center gap-space-xs">
+<button aria-label="Previous Weave" class="w-10 h-10 bg-surface-container flex items-center justify-center hover:bg-surface-container-high transition-colors" id="carousel-prev">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button aria-label="Next Weave" class="w-10 h-10 bg-primary text-on-primary flex items-center justify-center hover:bg-secondary transition-colors" id="carousel-next">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Scroll Container -->
+<div class="w-full overflow-x-auto flex gap-space-md px-margin-mobile scroll-smooth no-scrollbar snap-x snap-mandatory" id="specimen-scroll">
+<!-- Card 1 -->
+<div class="min-w-[270px] max-w-[270px] snap-start bg-surface-container-lowest p-space-sm shadow-sm flex flex-col justify-between">
+<div>
+<div class="aspect-square w-full relative overflow-hidden mb-space-sm bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Extreme macro tactile texture of natural belgian twill linen fabric showing intricate warp and weft fibers with earthy flecks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5N6me6iRWJEm1HFVIb_lfu9EkYC8yieHDJ2p1kceZFG_jvqcODgxS8lux02YjplUueQuw4fcqA1fxfWeIau7ZWUv-51n3fR6JoyPSQI2hqIYrNrOVEyoKVUQ0_tWWQwdUYIiT647u-3ntlUlJ_WeFJjBoxT2e7--uEiPlzdUm5lqJ5Cpz4CrYkxLwRsYbdLZ8RtEWbPuWxF-dJwqiGMpIP1TKZRfuoSkjhbMenIPy-kOIXh2fQLkKLg"/>
+<div class="absolute top-2 right-2 bg-secondary text-on-secondary font-label-sm text-label-sm px-1.5 py-0.5 uppercase">In Stock</div>
+</div>
+<div class="font-label-sm text-label-sm uppercase text-outline">Ref. AT-109</div>
+<h3 class="font-headline-sm text-title-md text-primary pt-0.5">Belgian Twill Linen</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1">Dense two-ply diagonal weave offering raw tactile crispness.</p>
+<div class="flex flex-col gap-1 mt-space-sm pt-space-xs border-t-0 bg-surface-container-low p-2">
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface"><span>WEIGHT</span><span class="font-semibold">440 GSM</span></div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface"><span>WIDTH</span><span class="font-semibold">142 CM</span></div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface"><span>RUB TEST</span><span class="font-semibold">75k ACT</span></div>
+</div>
+</div>
+<button class="mt-space-md w-full h-10 bg-primary-container text-on-primary font-label-sm text-label-sm uppercase hover:bg-secondary transition-colors" onclick="openSpecModal('Belgian Twill Linen', 'AT-109', '440 GSM', '100% Belgian Flax', '75,000 Double Rubs')">
+          Request Spec Sheet
+        </button>
+</div>
+<!-- Card 2 -->
+<div class="min-w-[270px] max-w-[270px] snap-start bg-surface-container-lowest p-space-sm shadow-sm flex flex-col justify-between">
+<div>
+<div class="aspect-square w-full relative overflow-hidden mb-space-sm bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Macro weave of deep terracotta colored cotton canvas with prominent textured slub yarn and raw selvedge edge" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCY0GDnSWI95_GK49auHziYxFpWd2rWjbv4_AdCTDAsjljwRIR6JSIARnWxP1EmZEGrx_v4TCMJLhBjyxVc2za4zXG9ygjtHizYaHxNmBsXQ0kiJYe1ZkJO6VGesGSko6uQ5mPA-cjC52emzbuFGnuC-MgSNW9Y5iI-Gy8x-iraI2ipSa8yhRcpE_VXcj09A-sCS7Vlzy02AAa-beWRDbLKg_Re9lagIuTw8nQIvZaXwjHeZ445vQVL1g"/>
+</div>
+<div class="font-label-sm text-label-sm uppercase text-outline">Ref. AT-282</div>
+<h3 class="font-headline-sm text-title-md text-primary pt-0.5">Slub Cotton Canvas</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1">Calendered ring-spun heavy canvas with natural unbleached character.</p>
+<div class="flex flex-col gap-1 mt-space-sm pt-space-xs bg-surface-container-low p-2">
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface"><span>WEIGHT</span><span class="font-semibold">510 GSM</span></div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface"><span>WIDTH</span><span class="font-semibold">150 CM</span></div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface"><span>RUB TEST</span><span class="font-semibold">90k ACT</span></div>
+</div>
+</div>
+<button class="mt-space-md w-full h-10 bg-primary-container text-on-primary font-label-sm text-label-sm uppercase hover:bg-secondary transition-colors" onclick="openSpecModal('Slub Cotton Canvas', 'AT-282', '510 GSM', '100% Organic Ring-Spun Cotton', '90,000 Double Rubs')">
+          Request Spec Sheet
+        </button>
+</div>
+<!-- Card 3 -->
+<div class="min-w-[270px] max-w-[270px] snap-start bg-surface-container-lowest p-space-sm shadow-sm flex flex-col justify-between">
+<div>
+<div class="aspect-square w-full relative overflow-hidden mb-space-sm bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Extreme close up of tactile charcoal wool boucle fabric showing looped curly yarns and soft architectural depth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBK5_TqgoaH4QZwxvgkGlf4ArW-74Ux-SRsrvjeZDgCjhTRe2YAUkFE7uYpEn5qaT77R4yzPl6js0aoSWChScN-emFWCDzkKQjCV6QAHy2O5-0X7nQT2QQrTkJAwaeYcxcc9FJPrFtgPuO-1HgMV1wxiEjatx0LGRs_BTDxV_1A022fTXSlpGpcTgH72gFa_2X6YO-kQQKCMXMnxaC0ORFi_z05bGDuA_WOMOJEiyE4toWhUjYbfEO7lg"/>
+<div class="absolute top-2 right-2 bg-tertiary-container text-on-tertiary font-label-sm text-label-sm px-1.5 py-0.5 uppercase">Acoustic</div>
+</div>
+<div class="font-label-sm text-label-sm uppercase text-outline">Ref. AT-550</div>
+<h3 class="font-headline-sm text-title-md text-primary pt-0.5">Heavy Wool Bouclé</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1">Three-dimensional knotted yarn crafted for deep acoustic dampening.</p>
+<div class="flex flex-col gap-1 mt-space-sm pt-space-xs bg-surface-container-low p-2">
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface"><span>WEIGHT</span><span class="font-semibold">620 GSM</span></div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface"><span>WIDTH</span><span class="font-semibold">140 CM</span></div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface"><span>RUB TEST</span><span class="font-semibold">100k ACT</span></div>
+</div>
+</div>
+<button class="mt-space-md w-full h-10 bg-primary-container text-on-primary font-label-sm text-label-sm uppercase hover:bg-secondary transition-colors" onclick="openSpecModal('Heavy Wool Boucl\u00e9', 'AT-550', '620 GSM', '78% Pure New Wool, 22% Polyamide', '100,000 Martindale')">
+          Request Spec Sheet
+        </button>
+</div>
+<!-- Card 4 -->
+<div class="min-w-[270px] max-w-[270px] snap-start bg-surface-container-lowest p-space-sm shadow-sm flex flex-col justify-between">
+<div>
+<div class="aspect-square w-full relative overflow-hidden mb-space-sm bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="Sheer ethereal woven slub voile fabric held against warm natural daylight showing open airy gauze weave structure" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAToRYVuaS_hsKFxWcG4hc5i2bpMBhK1vEKOQ_A207sdXL1hLWd0qvgEpIEbeeId5-wI-vodSX4Fb5VTh8ohlq4dGa-CfF3qUPffi4e_nf4GV2D5UUN7SbrOkVmfVEjI1FjatwNmxIhmTLusaaIqmIthlAvz1bb0O0_YaOUch8haKhsieLAILJfnZuuOwaEFk4mkYABlZ3M_QHWJWKPzp0xruc_Toitcc2B0z7S5tEEoAuKCxtt4VhVHg"/>
+</div>
+<div class="font-label-sm text-label-sm uppercase text-outline">Ref. AT-044</div>
+<h3 class="font-headline-sm text-title-md text-primary pt-0.5">Raw Slub Voile</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1">Ultra wide-width drapery offering organic daylight diffusion.</p>
+<div class="flex flex-col gap-1 mt-space-sm pt-space-xs bg-surface-container-low p-2">
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface"><span>WEIGHT</span><span class="font-semibold">145 GSM</span></div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface"><span>WIDTH</span><span class="font-semibold">320 CM</span></div>
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface"><span>LIGHTFAST</span><span class="font-semibold">Grade 7</span></div>
+</div>
+</div>
+<button class="mt-space-md w-full h-10 bg-primary-container text-on-primary font-label-sm text-label-sm uppercase hover:bg-secondary transition-colors" onclick="openSpecModal('Raw Slub Voile', 'AT-044', '145 GSM', '60% Linen, 40% Tencel', 'Curtain ACT Passed')">
+          Request Spec Sheet
+        </button>
+</div>
+</div>
+<!-- Progress Indicator Bar -->
+<div class="px-margin-mobile flex items-center justify-between">
+<div class="w-full bg-surface-container h-1 overflow-hidden">
+<div class="h-full bg-secondary transition-all duration-300 w-1/4" id="carousel-indicator"></div>
+</div>
+</div>
+</section>
+<!-- 4. COLOR & MATERIAL STORY -->
+<section class="w-full px-margin-mobile py-space-xl bg-surface-container flex flex-col gap-space-lg">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">Material Archetypes</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">Texture. Color. Craft.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+        Made to be felt. Our color library derives from natural mineral pigments, iron mordants, and eco-vat baths formulated in-house.
+      </p>
+</div>
+<!-- Interactive Material Palette Grid -->
+<div class="grid grid-cols-2 gap-space-sm" id="palette-grid">
+<!-- Terracotta Swatch -->
+<div class="bg-surface-container-lowest p-space-sm shadow-sm flex flex-col gap-2 cursor-pointer hover:bg-surface-container-low transition-colors" onclick="selectPalette('Terracotta Mineral', 'Rich earthenware clay tone with high UV stability', 'AT-PIG-44')">
+<div class="h-20 w-full bg-secondary flex items-end p-1.5 text-on-secondary">
+<span class="font-label-sm text-label-sm uppercase">Earth Clay</span>
+</div>
+<div>
+<div class="font-label-md text-title-md text-primary">Terracotta</div>
+<span class="font-label-sm text-label-sm text-outline uppercase">Pantone 18-1438</span>
+</div>
+</div>
+<!-- Raw Linen Swatch -->
+<div class="bg-surface-container-lowest p-space-sm shadow-sm flex flex-col gap-2 cursor-pointer hover:bg-surface-container-low transition-colors" onclick="selectPalette('Raw Unbleached Linen', 'Harvested flax untouched by bleaching agents, honoring seed variations', 'AT-PIG-01')">
+<div class="h-20 w-full bg-surface-container-high flex items-end p-1.5 text-on-surface">
+<span class="font-label-sm text-label-sm uppercase">Pure Flax</span>
+</div>
+<div>
+<div class="font-label-md text-title-md text-primary">Raw Natural</div>
+<span class="font-label-sm text-label-sm text-outline uppercase">Pantone 12-0404</span>
+</div>
+</div>
+<!-- Forest Spruce Swatch -->
+<div class="bg-surface-container-lowest p-space-sm shadow-sm flex flex-col gap-2 cursor-pointer hover:bg-surface-container-low transition-colors" onclick="selectPalette('Nordic Spruce', 'Subtle forest green enriched with botanical mordants', 'AT-PIG-19')">
+<div class="h-20 w-full bg-tertiary-container flex items-end p-1.5 text-on-tertiary">
+<span class="font-label-sm text-label-sm uppercase">Botanical</span>
+</div>
+<div>
+<div class="font-label-md text-title-md text-primary">Forest Spruce</div>
+<span class="font-label-sm text-label-sm text-outline uppercase">Pantone 19-5411</span>
+</div>
+</div>
+<!-- Deep Charcoal Swatch -->
+<div class="bg-surface-container-lowest p-space-sm shadow-sm flex flex-col gap-2 cursor-pointer hover:bg-surface-container-low transition-colors" onclick="selectPalette('Carbon Charcoal', 'Architectural deep slate infused with carbon black mineral dyes', 'AT-PIG-99')">
+<div class="h-20 w-full bg-primary-container flex items-end p-1.5 text-on-primary">
+<span class="font-label-sm text-label-sm uppercase">Mineral</span>
+</div>
+<div>
+<div class="font-label-md text-title-md text-primary">Carbon Slate</div>
+<span class="font-label-sm text-label-sm text-outline uppercase">Pantone 19-3908</span>
+</div>
+</div>
+</div>
+<!-- Active Swatch Inspection Callout Display -->
+<div class="bg-primary text-on-primary p-space-md flex flex-col gap-space-xs shadow-sm" id="palette-display">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase text-secondary-fixed">Live Dye Recipe Selected</span>
+<span class="font-label-sm text-label-sm uppercase text-outline-variant" id="palette-code">AT-PIG-44</span>
+</div>
+<div class="font-headline-sm text-headline-sm" id="palette-name">Terracotta Mineral</div>
+<p class="font-body-sm text-body-sm text-surface-variant" id="palette-desc">
+        Rich earthenware clay tone with high UV stability. Certified ACT Lightfastness Grade 5 minimum.
+      </p>
+<div class="pt-space-xs">
+<a class="inline-flex items-center gap-1 font-label-sm text-label-sm uppercase text-secondary-container hover:underline" data-path="contact-inquiry" href="#">
+          Request Lab Dip Color Match →
+        </a>
+</div>
+</div>
+</section>
+<!-- 5. MANUFACTURING & HORIZONTAL PROCESS CAROUSEL -->
+<section class="w-full px-margin-mobile py-space-xl flex flex-col gap-space-lg">
+<div class="flex flex-col gap-space-xs">
+<div class="inline-flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">Vertical Integration</span>
+<span class="w-6 h-[1px] bg-secondary"></span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-primary">From Fibre to Finished Textile</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Complete provenance control. We govern every phase from virgin filament selection to computerized loom tension and multi-tier lab inspections.
+      </p>
+</div>
+<!-- 7-Step Process Horizontal Scroll -->
+<div class="w-full overflow-x-auto flex gap-space-sm no-scrollbar pb-2">
+<!-- Step 01 -->
+<div class="min-w-[220px] bg-surface-container-low p-space-md flex flex-col justify-between shadow-sm">
+<div>
+<span class="font-headline-sm text-headline-sm text-secondary">01</span>
+<h3 class="font-label-md text-title-md text-primary mt-space-xs">Raw Spinning</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Sourcing high-staple Belgian flax, Egyptian long-staple cotton, and certified virgin wool fibres.</p>
+</div>
+<span class="font-label-sm text-label-sm uppercase text-outline mt-space-md">Station Alpha</span>
+</div>
+<!-- Step 02 -->
+<div class="min-w-[220px] bg-surface-container-low p-space-md flex flex-col justify-between shadow-sm">
+<div>
+<span class="font-headline-sm text-headline-sm text-secondary">02</span>
+<h3 class="font-label-md text-title-md text-primary mt-space-xs">Precision Looming</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Dornier rapier &amp; air-jet looms weaving up to 340cm seamless widths under controlled humidity.</p>
+</div>
+<span class="font-label-sm text-label-sm uppercase text-outline mt-space-md">Station Beta</span>
+</div>
+<!-- Step 03 -->
+<div class="min-w-[220px] bg-surface-container-low p-space-md flex flex-col justify-between shadow-sm">
+<div>
+<span class="font-headline-sm text-headline-sm text-secondary">03</span>
+<h3 class="font-label-md text-title-md text-primary mt-space-xs">Eco-Vat Dyeing</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Closed-loop water recycling dye house with non-toxic OEKO-TEX 100 Class 1 formulations.</p>
+</div>
+<span class="font-label-sm text-label-sm uppercase text-outline mt-space-md">Station Gamma</span>
+</div>
+<!-- Step 04 -->
+<div class="min-w-[220px] bg-surface-container-low p-space-md flex flex-col justify-between shadow-sm">
+<div>
+<span class="font-headline-sm text-headline-sm text-secondary">04</span>
+<h3 class="font-label-md text-title-md text-primary mt-space-xs">Rotary &amp; Screen</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Precision architectural pattern replication using pigment discharge and flatbed screens.</p>
+</div>
+<span class="font-label-sm text-label-sm uppercase text-outline mt-space-md">Station Delta</span>
+</div>
+<!-- Step 05 -->
+<div class="min-w-[220px] bg-surface-container-low p-space-md flex flex-col justify-between shadow-sm">
+<div>
+<span class="font-headline-sm text-headline-sm text-secondary">05</span>
+<h3 class="font-label-md text-title-md text-primary mt-space-xs">Finishing</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Sanforization, calendering, water-repellent nano-coatings, and antimicrobial contract barriers.</p>
+</div>
+<span class="font-label-sm text-label-sm uppercase text-outline mt-space-md">Station Epsilon</span>
+</div>
+<!-- Step 06 -->
+<div class="min-w-[220px] bg-surface-container-low p-space-md flex flex-col justify-between shadow-sm">
+<div>
+<span class="font-headline-sm text-headline-sm text-secondary">06</span>
+<h3 class="font-label-md text-title-md text-primary mt-space-xs">ACT Lab Testing</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Wyzenbeek 100k+ wire abrasion, Martindale rub cycles, tear tensile check, and fire ratings.</p>
+</div>
+<span class="font-label-sm text-label-sm uppercase text-outline mt-space-md">Station Zeta</span>
+</div>
+<!-- Step 07 -->
+<div class="min-w-[220px] bg-surface-container-low p-space-md flex flex-col justify-between shadow-sm">
+<div>
+<span class="font-headline-sm text-headline-sm text-secondary">07</span>
+<h3 class="font-label-md text-title-md text-primary mt-space-xs">Global Dispatch</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Vacuum-sealed continuous rolls, barcoded traceability, expedited freight to ports globally.</p>
+</div>
+<span class="font-label-sm text-label-sm uppercase text-outline mt-space-md">Station Final</span>
+</div>
+</div>
+</section>
+<!-- 6. COMPANY STORY PREVIEW & TIMELINE -->
+<section class="w-full px-margin-mobile py-space-xl bg-surface-container-low flex flex-col gap-space-lg">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">Heritage &amp; Outlook</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">Built on Craft. Growing with the World.</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Founded in 1978 as a family-run shuttle-loom workshop, Atelier Weave has matured into a premier global textile partner for forward-thinking architects, furniture houses, and luxury hospitality chains.
+      </p>
+</div>
+<!-- Interactive Historical Timeline Strip -->
+<div class="flex flex-col gap-space-sm relative">
+<!-- 1978 -->
+<div class="bg-surface p-space-md shadow-sm flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-secondary">1978</span>
+<span class="font-label-sm text-label-sm uppercase text-outline">Loom House I</span>
+</div>
+<div class="font-label-md text-title-md text-primary">Mill Foundation</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Began with 8 restored wooden mechanical looms weaving heavyweight cotton duck for industrial storage.</p>
+</div>
+<!-- 1996 -->
+<div class="bg-surface p-space-md shadow-sm flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-secondary">1996</span>
+<span class="font-label-sm text-label-sm uppercase text-outline">Industrial Expansion</span>
+</div>
+<div class="font-label-md text-title-md text-primary">Dornier Modernization</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Transitioned to high-speed electronic rapier looms, launching our dedicated contract upholstery line.</p>
+</div>
+<!-- 2012 -->
+<div class="bg-surface p-space-md shadow-sm flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-secondary">2012</span>
+<span class="font-label-sm text-label-sm uppercase text-outline">Sustainability Milestone</span>
+</div>
+<div class="font-label-md text-title-md text-primary">Circular Weaving Initiative</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Attained OEKO-TEX 100 and Global Recycled Standard accreditation; introduced 100% closed-loop post-industrial scrap reclaim.</p>
+</div>
+<!-- 2026 -->
+<div class="bg-primary text-on-primary p-space-md shadow-sm flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-secondary-fixed">2026</span>
+<span class="font-label-sm text-label-sm uppercase text-primary-fixed">The Future</span>
+</div>
+<div class="font-label-md text-title-md text-on-primary">Net-Zero Bio-Filaments</div>
+<p class="font-body-sm text-body-sm text-surface-variant">Commercializing algae-dyed regenerative bast fibres engineered for Cradle-to-Cradle Gold architectural certification.</p>
+</div>
+</div>
+</section>
+<!-- 7. B2B WHOLESALE CAPABILITIES & STATS -->
+<section class="w-full px-margin-mobile py-space-xl flex flex-col gap-space-lg">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">Institutional Capability</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">Wholesale Specifications</h2>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="bg-surface-container-low p-space-sm flex flex-col gap-1 shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[24px]">scale</span>
+<div class="font-label-md text-title-md text-primary mt-1">Capacity</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">1.2M linear meters/month across 4 automated shed halls.</p>
+</div>
+<div class="bg-surface-container-low p-space-sm flex flex-col gap-1 shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[24px]">palette</span>
+<div class="font-label-md text-title-md text-primary mt-1">Custom Dips</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Spectrophotometer lab dip matches delivered in 72 hours.</p>
+</div>
+<div class="bg-surface-container-low p-space-sm flex flex-col gap-1 shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[24px]">inventory_2</span>
+<div class="font-label-md text-title-md text-primary mt-1">MOQ Flexibility</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Custom bespoke weaving starting at 100 meters per dye lot.</p>
+</div>
+<div class="bg-surface-container-low p-space-sm flex flex-col gap-1 shadow-sm">
+<span class="material-symbols-outlined text-secondary text-[24px]">local_shipping</span>
+<div class="font-label-md text-title-md text-primary mt-1">Direct Logistics</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Bonded warehouse shipping with FOB, CIF, or DDP terms.</p>
+</div>
+</div>
+</section>
+<!-- 8. AUTHENTIC TEXTILE SPECIMEN GALLERY (MASONRY GRID) -->
+<section class="w-full px-margin-mobile py-space-xl bg-surface-container-low flex flex-col gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-secondary">Atmosphere</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">Mill Floor &amp; Laboratory</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Honest industrial reality. Inside the loom sheds where tactile permanence is forged.
+      </p>
+</div>
+<!-- Masonry-like Rich Grid -->
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<!-- 1: Steel Racks & Rolls -->
+<div class="flex flex-col gap-1">
+<div class="aspect-[3/4] w-full overflow-hidden bg-surface shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Warehouse shelves stacked with rolls of raw woven textiles wrapped in paper tags in a warm industrial daylight mill" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAq7YmD3zkAGJUcI0bjFoZC3oM0-S876ulv_NKvlztPZUzyxec0mRgmeVjTtNxXTwB7sayGMtNvfZc6Wbg-bmDEnSCNijSBvsYqRzyb_RpiVrEMMDQfY_kzkU9le-937Q90tMMjxT-a2EaWR1oxjDb8YdYd-ffT8q1mInLXBdhc5lfFHjOLKwUihma9hk3IcK9c0bpEyP9em7Mg2DE0KcDDn1-pMkpbUbk_eaEmArDKZ0flE5OmxAmyWA"/>
+</div>
+<span class="font-label-sm text-label-sm uppercase text-outline">Roll Storage Vault</span>
+</div>
+<!-- 2: Loom Shuttle Macro -->
+<div class="flex flex-col gap-1">
+<div class="aspect-square w-full overflow-hidden bg-surface shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Macro detail of textile mechanical loom shuttle with crisp warp threads strung tightly under tension" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMjgkOOZU1z0x63tppv6aTKakskkSr9Kf0HKw4-HM31H9YEGnYISVKfUc_BvzqQzVc3TjX0EizctTg5eheegMYMR_b9HSOnuGPDEvkLUnidaEeJJRqaEsyirUI4Qd5-hw0_gmyQufyDLfNkMt1RsaY0Y5GWEj__UKrrvKSgr8Hc6IHMS1hvOE3EbLqigYFFKxgQS5bwiQEK9SjxgFBTZjxwHufSYkuPcGhNx4nlJtkZRxYlF6ISJnG8A"/>
+</div>
+<span class="font-label-sm text-label-sm uppercase text-outline">High-Tension Shed</span>
+</div>
+<!-- 3: Laboratory Color Check -->
+<div class="flex flex-col gap-1">
+<div class="aspect-square w-full overflow-hidden bg-surface shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Close up hands of a textile technician holding terracotta fabric swatches under standard D65 lightbox daylight conditions" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAh2SZTRGhczXIoVCF0FtFBy3q97h-WX_1Aj0V-VpWKE4okUn3Jj22nYaw5GDx6NPTlJ_ZicGXQccI3ZnBDF83CXZQtYdnpgoLKmbETR2xDv0E9RbNhtbnsiQCltXThAq61c6qU7XWezO9U0SSrh30_NkqXoIvgAbYGA3BzxcWMY9oVCjxqejo6-LVdPMDwZZ2NwTQ-6A7FC_b4dHVshoZH14LxzPTOefMN74mZ_iIC1vLuH6ktHAFNqg"/>
+</div>
+<span class="font-label-sm text-label-sm uppercase text-outline">D65 Lightbox Grading</span>
+</div>
+<!-- 4: Heavy Texture Drape -->
+<div class="flex flex-col gap-1">
+<div class="aspect-[3/4] w-full overflow-hidden bg-surface shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Dramatic architectural cascade of thick woven charcoal wool bouclé drapery resting on an oiled oak workbench" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwG9BBufrgeIpDqxPATF7bikGva56fGL1kPXif9MJNJeQcvOn6BnGcSG0LOFKjvFzD_UoxiQv77wqt3PEBwtQeIfZuXlSnRinFrrY3ivA1rrYck4y3qinrMkRH1eEksBF0-nsGknFMKJ4F-XaSX7_lUvjcR7YYyEFsgUse8oeD7xxJq505gTYDymMKw-jvAsVSCFyS8qC51cSYr4AtxP1tNrnyBRnDSu92LIsLZETkBCDmrdIuBrlaAQ"/>
+</div>
+<span class="font-label-sm text-label-sm uppercase text-outline">Heavyweight Bouclé</span>
+</div>
+</div>
+</section>
+<!-- 9. CLIENT & SPECIFICATION CALLOUT / INQUIRY BANNER -->
+<section class="w-full px-margin-mobile py-space-2xl">
+<div class="bg-primary text-on-primary p-space-lg shadow-md flex flex-col gap-space-md">
+<div class="flex items-center gap-2 text-secondary-fixed">
+<span class="material-symbols-outlined text-[20px]">architecture</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest">Trade &amp; Contract Division</span>
+</div>
+<div class="flex flex-col gap-space-xs">
+<h2 class="font-headline-md text-headline-md text-on-primary">Looking for the Right Textile Partner?</h2>
+<p class="font-body-md text-body-md text-surface-variant">
+          Tell us what you need. Our materials engineering team will assist you in developing custom weaves, formulating proprietary dye lots, or supplying continuous yardage for commercial rollouts.
+        </p>
+</div>
+<div class="flex flex-col gap-space-xs pt-space-xs">
+<a class="h-12 w-full bg-secondary-container text-on-secondary-container font-label-md text-label-md uppercase tracking-wider flex items-center justify-center font-semibold hover:bg-secondary-fixed transition-colors" data-path="contact-inquiry" href="#">
+          Start an Inquiry
+        </a>
+<a class="h-12 w-full bg-primary-container text-on-primary font-label-md text-label-md uppercase tracking-wider flex items-center justify-center hover:bg-surface-container-high hover:text-primary transition-colors" data-path="contact-inquiry" href="#">
+          Request Sample Swatches
+        </a>
+</div>
+<div class="pt-space-sm flex items-center justify-between font-label-sm text-label-sm text-outline-variant">
+<span>Typical response time: &lt; 4 business hours</span>
+<span>ISO 9001:2015</span>
+</div>
+</div>
+</section>
+<!-- SPECIFICATION FLYOUT MODAL (Interactivity) -->
+<div class="fixed inset-0 z-50 bg-primary/60 backdrop-blur-sm hidden items-center justify-center p-gutter-mobile" id="spec-modal">
+<div class="w-full max-w-sm bg-surface p-space-lg shadow-2xl flex flex-col gap-space-md relative animate-in fade-in">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase text-secondary font-semibold">Technical Dossier</span>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface hover:text-secondary" onclick="closeSpecModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div>
+<span class="font-label-sm text-label-sm uppercase text-outline" id="modal-ref">Ref. AT-109</span>
+<h3 class="font-headline-sm text-headline-sm text-primary" id="modal-title">Belgian Twill Linen</h3>
+</div>
+<div class="flex flex-col gap-space-xs bg-surface-container-low p-space-sm">
+<div class="flex justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Composition</span>
+<span class="font-semibold text-on-surface" id="modal-comp">100% Belgian Flax</span>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Basis Weight</span>
+<span class="font-semibold text-on-surface" id="modal-gsm">440 GSM</span>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Abrasion Test</span>
+<span class="font-semibold text-on-surface" id="modal-rub">75,000 Double Rubs</span>
+</div>
+<div class="flex justify-between font-body-sm text-body-sm">
+<span class="text-on-surface-variant">Fire Code</span>
+<span class="font-semibold text-on-surface">CAL 133 / NFPA 260</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+        Direct specimen binders with physical touch tags dispatched within 24 hours to qualified specifiers.
+      </p>
+<div class="flex flex-col gap-space-xs">
+<a class="h-11 bg-primary text-on-primary font-label-sm text-label-sm uppercase flex items-center justify-center hover:bg-secondary transition-colors" data-path="contact-inquiry" href="#">
+          Dispatch Swatch Kit
+        </a>
+<button class="h-11 bg-surface-container text-on-surface font-label-sm text-label-sm uppercase flex items-center justify-center" onclick="closeSpecModal()">
+          Dismiss
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  // Spec Sheet Modal Handlers
+  function openSpecModal(title, ref, gsm, comp, rub) {
+    document.getElementById('modal-title').textContent = title;
+    document.getElementById('modal-ref').textContent = 'Ref. ' + ref;
+    document.getElementById('modal-gsm').textContent = gsm;
+    document.getElementById('modal-comp').textContent = comp;
+    document.getElementById('modal-rub').textContent = rub;
+    const modal = document.getElementById('spec-modal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+  }
+
+  function closeSpecModal() {
+    const modal = document.getElementById('spec-modal');
+    modal.classList.remove('flex');
+    modal.classList.add('hidden');
+  }
+
+  // Material Palette Interaction
+  function selectPalette(name, desc, code) {
+    document.getElementById('palette-name').textContent = name;
+    document.getElementById('palette-desc').textContent = desc;
+    document.getElementById('palette-code').textContent = code;
+  }
+
+  // Horizontal Carousel Navigation
+  const scrollContainer = document.getElementById('specimen-scroll');
+  const prevBtn = document.getElementById('carousel-prev');
+  const nextBtn = document.getElementById('carousel-next');
+  const indicator = document.getElementById('carousel-indicator');
+
+  if (scrollContainer && prevBtn && nextBtn && indicator) {
+    prevBtn.addEventListener('click', () => {
+      scrollContainer.scrollBy({ left: -286, behavior: 'smooth' });
+    });
+    nextBtn.addEventListener('click', () => {
+      scrollContainer.scrollBy({ left: 286, behavior: 'smooth' });
+    });
+
+    scrollContainer.addEventListener('scroll', () => {
+      const maxScroll = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+      if (maxScroll > 0) {
+        const ratio = scrollContainer.scrollLeft / maxScroll;
+        indicator.style.width = Math.max(25, ratio * 100) + '%';
+      }
+    });
+  }
+</script><footer class="w-full mt-space-2xl bg-surface-container-low px-margin-mobile py-space-xl text-on-surface flex flex-col gap-space-lg"><div class="flex flex-col gap-space-xs"><div class="font-headline-sm text-headline-sm text-primary">Atelier Weave</div><p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm">Makers of contract-grade architectural textiles, interior fabrics, and custom wholesale weaves since 1978.</p></div><div class="grid grid-cols-2 gap-space-md"><div class="flex flex-col gap-space-xs"><span class="font-label-sm text-label-sm uppercase text-secondary">Collections</span><a class="font-body-sm text-body-sm text-on-surface hover:text-secondary" data-path="fabric-collection" href="#">Contract Fabric</a><a class="font-body-sm text-body-sm text-on-surface hover:text-secondary" data-path="home-decor-collection" href="#">Architectural Drapery</a><a class="font-body-sm text-body-sm text-on-surface hover:text-secondary" data-path="accessories-collection" href="#">Woven Objects</a></div><div class="flex flex-col gap-space-xs"><span class="font-label-sm text-label-sm uppercase text-secondary">Mill Coordinates</span><span class="font-body-sm text-body-sm text-on-surface-variant">41.8781° N, 87.6298° W</span><span class="font-body-sm text-body-sm text-on-surface-variant">Loom House IV, Weavers Way</span><span class="font-body-sm text-body-sm text-on-surface-variant">ISO 9001 • Cradle to Cradle</span></div></div><div class="flex flex-wrap gap-space-xs py-space-xs"><span class="font-label-sm text-label-sm uppercase bg-surface px-space-xs py-1 text-on-surface-variant">OEKO-TEX 100</span><span class="font-label-sm text-label-sm uppercase bg-surface px-space-xs py-1 text-on-surface-variant">ACT Contract Passed</span><span class="font-label-sm text-label-sm uppercase bg-surface px-space-xs py-1 text-on-surface-variant">100k Martindale</span></div><div class="flex items-center justify-between pt-space-md"><span class="font-label-sm text-label-sm text-outline">© 1978–2025 Atelier Weave Mills.</span><a class="font-label-sm text-label-sm uppercase text-secondary hover:underline" data-path="contact-inquiry" href="#">Trade Inquiries →</a></div></footer></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.03)]" data-active-classes="text-secondary"><div class="h-20 px-gutter-mobile grid grid-cols-2 gap-space-xs items-center"><a class="h-11 px-space-sm bg-surface-container flex items-center justify-center gap-space-xs text-on-surface hover:bg-surface-container-high transition-colors" href="tel:+18005550198"><span class="material-symbols-outlined text-[20px] text-secondary">call</span><span class="font-label-sm text-label-sm uppercase">Call Mill</span></a><a class="h-11 px-space-sm bg-primary text-on-primary flex items-center justify-center gap-space-xs hover:bg-secondary transition-colors" data-path="contact-inquiry" href="#"><span class="material-symbols-outlined text-[20px]">history_edu</span><span class="font-label-sm text-label-sm uppercase">Request Swatches</span></a></div></nav></body></html>
